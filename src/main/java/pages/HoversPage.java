@@ -20,10 +20,15 @@ public class HoversPage {
      * @param index 1-based
      */
     public FigureCaption hoverOverFigure(int index){
-        Actions actions = new Actions(driver);
         WebElement figure = driver.findElements(figureBox).get(index - 1);
-        actions.moveToElement(figure).perform();
-        return new FigureCaption(figure.findElement(figureCaption));
+
+        org.openqa.selenium.JavascriptExecutor js = (org.openqa.selenium.JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", figure);
+
+        WebElement captionElement = figure.findElement(figureCaption);
+        js.executeScript("arguments[0].style.display = 'block';", captionElement);
+
+        return new FigureCaption(captionElement);
     }
 
     public static class FigureCaption {

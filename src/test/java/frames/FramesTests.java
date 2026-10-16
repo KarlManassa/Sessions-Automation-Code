@@ -11,7 +11,7 @@ public class FramesTests extends BaseTests {
         var nestedFramesPage=homePage.clickFrames().clickNestedFrames();
         assertTrue(nestedFramesPage.getLeftFrameText().contains("LEFT"),
                 "The left text is incorrect");
-        assertTrue(nestedFramesPage.getBottomFrameText().contains("Bottom"),
+        assertTrue(nestedFramesPage.getBottomFrameText().contains("BOTTOM"), // <-- غيرها إلى "BOTTOM"
                 "The bottom text is incorrect");
     }
 

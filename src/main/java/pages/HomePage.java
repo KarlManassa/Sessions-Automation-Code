@@ -33,7 +33,7 @@ public class HomePage {
     }
 
     public JavaScriptAlertsPage clickJavaScriptAlerts(){
-        clickLink("JavaScript Alerts");
+        driver.findElement(By.linkText("JavaScript Alerts")).click();
         return new JavaScriptAlertsPage(driver);
     }
 
