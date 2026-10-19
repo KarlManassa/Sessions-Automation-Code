@@ -2,27 +2,34 @@ package base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterMethod;
 import pages.HomePage;
+import utils.WindowManager;
 
 public class BaseTests {
-
-    protected WebDriver driver;
+    private WebDriver driver;
     protected HomePage homePage;
 
-    @BeforeMethod
+    @BeforeClass
     public void setup(){
         driver = new EdgeDriver();
         driver.manage().window().maximize();
+    }
+
+    @BeforeMethod
+    public void goHome(){
         driver.get("https://the-internet.herokuapp.com/");
         homePage = new HomePage(driver);
     }
 
-    @AfterMethod
-    public void tearDown(){
-        if (driver != null) {
-            driver.quit();
-        }
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
+    }
+
+    public WindowManager getWindowManager(){
+        return new WindowManager(driver);
     }
 }
